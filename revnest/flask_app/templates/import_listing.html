@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import Listing</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="static\css\style.css">
+</head>
+<body>
+    <div class="headerBar d-flex justify-content-between pt-3 pe-3 pb-4">
+        <img id="listing_logo" class="ms-5" src="static\img\listing_logo.png" alt="listing logo">
+        <ul class="d-flex gap-5">
+            {% if session["user_id"] %}
+            <li>
+                <a class="listMember" href="/import_listing">Sell My STR</a>
+            </li>
+            {% endif %}
+            {% if not session["user_id"] %}
+            <li>
+                <a class="listMember" href="/login">Log In</a>
+                <p class="d-inline">|</p>
+                <a class="listMember" href="/sign_up">Sign Up</a>
+            </li>
+            {% endif %}
+            <li>
+                <a class="listMember" href="#">Find Lenders</a>
+            </li>
+            <li>
+                <a class="listMember" href="#">About Us</a>
+            </li>
+            {% if session["user_id"] %}
+            <li>
+                <a class="listMember" href="/user/logout">Log Out</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+    {% for message in get_flashed_messages(category_filter=["street"]) %}
+    <p class="m-2 fs-10">{{message}}</p>
+    {% endfor %}
+    {% for message in get_flashed_messages(category_filter=["state"]) %}
+    <p class="m-2 fs-10">{{message}}</p>
+    {% endfor %}
+    {% for message in get_flashed_messages(category_filter=["city"]) %}
+    <p class="m-2 fs-10">{{message}}</p>
+    {% endfor %}
+    {% for message in get_flashed_messages(category_filter=["zip"]) %}
+    <p class="m-2 fs-10">{{message}}</p>
+    {% endfor %}
+    {% for message in get_flashed_messages(category_filter=["bd_count"]) %}
+    <p class="m-2 fs-10">{{message}}</p>
+    {% endfor %}
+    {% for message in get_flashed_messages(category_filter=["full_bath"]) %}
+    <p class="m-2 fs-10">{{message}}</p>
+    {% endfor %}
+    {% for message in get_flashed_messages(category_filter=["half_bath"]) %}
+    <p class="m-2 fs-10">{{message}}</p>
+    {% endfor %}
+    {% for message in get_flashed_messages(category_filter=["a_price"]) %}
+    <p class="m-2 fs-10">{{message}}</p>
+    {% endfor %}
+    {% for message in get_flashed_messages(category_filter=["square_ft"]) %}
+    <p class="m-2 fs-10">{{message}}</p>
+    {% endfor %}
+    {% for message in get_flashed_messages(category_filter=["gross_sales"]) %}
+    <p class="m-2 fs-10">{{message}}</p>
+    {% endfor %}
+    <main class="d-flex flex-column mx-auto">
+        <div class="d-flex flex-column mt-4 text-center">
+                <h1 class="ms-3 me-3">Currently for sale?</h1>
+                <h4 class="m-3">Enter your info manually</h4>
+        </div>
+        <form action="/import_listing/process" class="mx-auto col-8" method="POST">
+            <div class="top_half_form d-flex justify-content-between">
+                <div class="form_left d-flex flex-column w-50 gap-2">
+                    <input class="w-75 p-2 mt-3 mb-4" type="text" name="street" id="street" placeholder="Street">
+                    <input class="w-75 p-2 mb-4" type="text" name="city" id="city" placeholder="City">
+                    <select class="w-75 p-2 mb-4" name="state" id="state">
+                        <option disabled value="" selected>State</option>
+                        <option value="AL">AL</option>
+                        <option value="AK">AK</option>
+                        <option value="AR">AR</option>
+                        <option value="AZ">AZ</option>
+                        <option value="CA">CA</option>
+                        <option value="CO">CO</option>
+                        <option value="CT">CT</option>
+                        <option value="DC">DC</option>
+                        <option value="DE">DE</option>
+                        <option value="FL">FL</option>
+                        <option value="GA">GA</option>
+                        <option value="HI">HI</option>
+                        <option value="IA">IA</option>
+                        <option value="ID">ID</option>
+                        <option value="IL">IL</option>
+                        <option value="IN">IN</option>
+                        <option value="KS">KS</option>
+                        <option value="KY">KY</option>
+                        <option value="LA">LA</option>
+                        <option value="MA">MA</option>
+                        <option value="MD">MD</option>
+                        <option value="ME">ME</option>
+                        <option value="MI">MI</option>
+                        <option value="MN">MN</option>
+                        <option value="MO">MO</option>
+                        <option value="MS">MS</option>
+                        <option value="MT">MT</option>
+                        <option value="NC">NC</option>
+                        <option value="NE">NE</option>
+                        <option value="NH">NH</option>
+                        <option value="NJ">NJ</option>
+                        <option value="NM">NM</option>
+                        <option value="NV">NV</option>
+                        <option value="NY">NY</option>
+                        <option value="ND">ND</option>
+                        <option value="OH">OH</option>
+                        <option value="OK">OK</option>
+                        <option value="OR">OR</option>
+                        <option value="PA">PA</option>
+                        <option value="RI">RI</option>
+                        <option value="SC">SC</option>
+                        <option value="SD">SD</option>
+                        <option value="TN">TN</option>
+                        <option value="TX">TX</option>
+                        <option value="UT">UT</option>
+                        <option value="VT">VT</option>
+                        <option value="VA">VA</option>
+                        <option value="WA">WA</option>
+                        <option value="WI">WI</option>
+                        <option value="WV">WV</option>
+                        <option value="WY">WY</option>
+                    </select>
+                    <input class="w-75 p-2" type="text" name="zip" id="zip" placeholder="Zip">
+                </div>
+                <div class="right_side text-center">
+                    <table class="form_table">
+                        <tr class="table_row">
+                            <td>
+                                <label for="bd_count">Bedrooms</label>
+                            </td>
+                            <td>
+                                <input class="ms-4 me-2 mt-1 form_gray text-light cust_width_1" min="0" type="number" name="bd_count" id="bd_count" placeholder="0">
+                            </td>
+                        </tr>
+                        <tr class="table_row">
+                            <td>
+                                <label for="full_bath">Full bath</label>
+                            </td>
+                            <td>
+                                <input class="ms-4 me-2 mt-1 form_gray text-light cust_width_1" min="0" type="number" name="full_bath" id="full_bath" placeholder="0">
+                            </td>
+                        </tr>
+                        <tr class="table_row">
+                            <td>
+                                <label for="half_bath">Half bath</label>
+                            </td>
+                            <td>
+                                <input class="ms-4 me-2 mt-1 form_gray text-light cust_width_1" min="0" type="number" name="half_bath" id="half_bath" placeholder="0">
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="d-flex justify-content-end mt-5">
+                        <input class="w-75 p-2 asking_price" type="text" name="a_price" id="a_price" placeholder="Asking Price">
+                    </div>
+                    <div class="d-flex justify-content-end mt-5">
+                        <input class="w-75 p-2 asking_price" type="text" name="square_ft" id="square_ft" placeholder="Square Footage">
+                    </div>
+                    <div class="d-flex justify-content-end mt-5">
+                        <input class="w-75 p-2 asking_price" type="text" name="gross_sales" id="gross_sales" placeholder="Gross Sales">
+                    </div>
+                </div>
+            </div>
+            <label class="d-block description_input" for="description">Property Description</label>
+            <input class="w-50 p-2 description_input" type="text" name="description" id="description" placeholder="This urban and stylish property is...">
+            <label class="d-block description_input" for="airbnb">Airbnb Link</label>
+            <input class="w-50 p-2 description_input" type="text" name="airbnb" id="airbnb" placeholder="https://www.airbnb.com/...">
+            <label class="d-block description_input" for="vrbo">VRBO Link</label>
+            <input class="w-50 p-2 description_input" type="text" name="vrbo" id="vrbo" placeholder="https://www.vrbo.com/...">
+
+
+
+            <button>submit</button>
+        </form>
+    </main>
+    <a href="/search_and_buy">Back to search and buy</a>
+</body>
+</html>

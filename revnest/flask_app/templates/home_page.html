@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listing Site</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="static\css\style.css">
+</head>
+<body>
+    <div class="headerBar d-flex justify-content-between pt-3 pe-3 pb-4">
+        <img id="listing_logo" class="ms-5" src="static\img\listing_logo.png" alt="listing logo">
+        <ul class="d-flex gap-5">
+            {% if session["user_id"] %}
+            <li>
+                <a class="listMember" href="/import_listing">Sell My STR</a>
+            </li>
+            {% endif %}
+            {% if not session["user_id"] %}
+            <li>
+                <a class="listMember" href="/login">Log In</a>
+                <p class="d-inline">|</p>
+                <a class="listMember" href="/sign_up">Sign Up</a>
+            </li>
+            {% endif %}
+            <li>
+                <a class="listMember" href="#">Find Lenders</a>
+            </li>
+            <li>
+                <a class="listMember" href="#">About Us</a>
+            </li>
+        </ul>
+    </div>
+    <main class="d-flex justify-content-between">
+        <div class="leftColumn ms-5">
+            <h1>Verify and sell your<br>short term rental</h1>
+            <h4 class="mt-5">Do you have a short term rental that
+                <br>has sales over the past 12 months?
+                <br>Prove it!
+            </h4>
+            {% if not session.user_id %}
+            <div class="buttons mt-5">
+                <a id="signUp" class="btn me-4" href="/sign_up">SIGN UP</a>
+                <a class="logIn ms-4" href="/login">Log In</a>
+            </div>
+            {% endif %}
+            {% if session.user_id %}
+            <div class="btn buttons mt-5">
+                <a class="sell_str_button" href="/import_listing">Sell My STR</a>
+            </div>
+            {% endif %}
+        </div>
+        <img class="w-50" src="static\img\home_room.png" alt="home_room photo">
+    </main>
+    <a href="/admin">Admin Page</a>
+</body>
+</html>

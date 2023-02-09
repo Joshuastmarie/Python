@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+</head>
+<body>
+    <a href="/">Back to Home Page</a>
+    <h1>users</h1>
+    <table>
+        <tr>
+            <th>User ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{user.id}}</td>
+            <td>{{user.first_name}}</td>
+            <td>{{user.last_name}}</td>
+            <td>{{user.email}}</td>
+            <td>
+                <a href="/admin/delete_user/{{user.id}}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h1>listings</h1>
+    <table>
+        <tr>
+            <th>Listing ID</th>
+            <th>Street</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+            <th>Bedroom Count</th>
+            <th>Full Bath</th>
+            <th>Half Bath</th>
+            <th>Asking Price</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>User ID</th>
+            <th>Action</th>
+        </tr>
+        {% for listing in listings %}
+        <tr>
+            <td>{{listing.id}}</td>
+            <td>{{listing.street}}</td>
+            <td>{{listing.city}}</td>
+            <td>{{listing.state}}</td>
+            <td>{{listing.zip}}</td>
+            <td>{{listing.bd_count}}</td>
+            <td>{{listing.full_bath}}</td>
+            <td>{{listing.half_bath}}</td>
+            <td>{{listing.a_price}}</td>
+            <td>{{listing.created_at}}</td>
+            <td>{{listing.updated_at}}</td>
+            <td>{{listing.user_id}}</td>
+            <td>
+                <a href="/admin/delete_listing/{{listing.id}}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</body>
+</html>
