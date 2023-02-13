@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Photos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="static\css\style.css">
+</head>
+<body>
+    <div class="headerBar d-flex justify-content-between pt-3 pe-3 pb-4">
+        <img id="listing_logo" class="ms-5" src="static\img\listing_logo.png" alt="listing logo">
+        <ul class="d-flex gap-5">
+            {% if session["user_id"] %}
+            <li>
+                <a class="listMember" href="/import_listing">Sell My STR</a>
+            </li>
+            {% endif %}
+            {% if not session["user_id"] %}
+            <li>
+                <a class="listMember" href="/login">Log In</a>
+                <p class="d-inline">|</p>
+                <a class="listMember" href="/sign_up">Sign Up</a>
+            </li>
+            {% endif %}
+            <li>
+                <a class="listMember" href="#">Find Lenders</a>
+            </li>
+            <li>
+                <a class="listMember" href="#">About Us</a>
+            </li>
+            {% if session["user_id"] %}
+            <li>
+                <a class="listMember" href="/user/logout">Log Out</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+        <h1>PHOTOS</h1>
+        <form action="/import_img/process" class="mx-auto col-8" method="POST">
+            <input type="file" id="blob_img" name="blob_img">
+            <button>submit</button>
+        </form>
+    </main>
+    <a href="/search_and_buy">Back to search and buy</a>
+</body>
+</html>

@@ -3,7 +3,8 @@ from flask_app import app
 from flask import render_template, redirect, request, session, flash
 from flask_app.models.user_model import User
 from flask_app.models.listing_model import Listing
-from flask_app.controllers import listing_controller
+from flask_app.models.img_model import Img
+from flask_app.controllers import listing_controller, img_controller
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 
