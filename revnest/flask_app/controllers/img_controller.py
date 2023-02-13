@@ -18,22 +18,24 @@ from flask_app.controllers import user_controller, listing_controller
 def upload_img(id):
     if "user_id" not in session:
         return redirect('/')
-    return render_template('upload_img.html')
+    listing_id = id
+    return render_template('upload_img.html', listing_id = listing_id)
 
 @app.route('/import_img/process', methods=["POST"])
-def process_listing():
-    if not Listing.validator_listing(request.form):
-        return redirect('/import_listing')
-    print(session["user_id"])
+def process_img():
     data = {
-        **request.form,
-        "user_id": session["user_id"]
+        **request.form
     }
-    data["airbnb"] = data["airbnb"].split('?')[0]
-    data["vrbo"] = data["vrbo"].split('?')[0]
-    listing_id = Listing.insert_new_listing(data)
-    print(listing_id)
-    return redirect (f'/listing/{listing_id}')
+    if not Img.validator_img(request.form):
+        return redirect(f'/upload/{data[id]}')
+    print("below this")
+    print(data["blob_img"])
+    filename = data["blob_img"]
+    binaryData = Img.convertToBinaryData(filename)
+    data["blob_img"] = binaryData
+    img_id = Img.insert_new_listing(data)
+    print(id)
+    return redirect (f'/listing/{id}')
 
 # # Search and buy page 
 

@@ -39,6 +39,7 @@
     </div>
         <h1>PHOTOS</h1>
         <form action="/import_img/process" class="mx-auto col-8" method="POST">
+            <input type="hidden" id="listing_id" name="listing_id" value={{listing_id}}>
             <input type="file" id="blob_img" name="blob_img">
             <button>submit</button>
         </form>

@@ -48,6 +48,14 @@ class Img:
         query = "DELETE FROM imgs WHERE id = %(id)s"
         return connectToMySQL(my_db).query_db(query, data)
 
+# binary data conversion
+    @classmethod
+    def convertToBinaryData(cls, filename):
+    # Convert digital data to binary format
+        with open(filename, 'rb') as file:
+            binaryData = file.read()
+        return binaryData
+
 
 # Validator 
 
