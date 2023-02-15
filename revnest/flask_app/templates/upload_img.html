@@ -38,9 +38,9 @@
         </ul>
     </div>
         <h1>PHOTOS</h1>
-        <form action="/import_img/process" class="mx-auto col-8" method="POST">
+        <form action="/import_img/process" enctype="multipart/form-data" class="mx-auto col-8" method="POST">
             <input type="hidden" id="listing_id" name="listing_id" value={{listing_id}}>
-            <input type="file" id="blob_img" name="blob_img">
+            <input type="file" id="img_blob" name="img_blob" accept="image/png, image/jpeg">
             <button>submit</button>
         </form>
     </main>

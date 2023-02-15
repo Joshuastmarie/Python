@@ -38,7 +38,7 @@ class Img:
     @classmethod
     def insert_new_img(cls, data):
         query = "INSERT INTO imgs (img_blob, listing_id) VALUES (%(img_blob)s, %(listing_id)s);"
-        results = connectToMySQL(my_db).query_db(query, data)
+        results = connectToMySQL(my_db).query_db_blobs(query, data)
         return results
 
 # delete methods
@@ -62,7 +62,7 @@ class Img:
     @staticmethod
     def validator_img(form_data):
         is_valid = True
-        if len(form_data['blob_img']) < 1:
+        if not form_data['blob_img']:
             is_valid = False
             flash("Select an image to upload", "blob_img")
         # if len(form_data['last_name']) < 1:

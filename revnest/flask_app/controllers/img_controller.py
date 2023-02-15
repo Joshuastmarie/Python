@@ -23,17 +23,16 @@ def upload_img(id):
 
 @app.route('/import_img/process', methods=["POST"])
 def process_img():
+    upload_file = request.files['img_blob'].read()
     data = {
-        **request.form
+        **request.form,
+        **request.files
     }
-    if not Img.validator_img(request.form):
-        return redirect(f'/upload/{data[id]}')
+    # if not Img.validator_img(request.form):
+    #     return redirect(f'/upload/{data[id]}')
     print("below this")
-    print(data["blob_img"])
-    filename = data["blob_img"]
-    binaryData = Img.convertToBinaryData(filename)
-    data["blob_img"] = binaryData
-    img_id = Img.insert_new_listing(data)
+    img_id = Img.insert_new_img(data)
+    id = data['listing_id']
     print(id)
     return redirect (f'/listing/{id}')
 
